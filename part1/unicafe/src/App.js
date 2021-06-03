@@ -13,12 +13,12 @@ const Statistics = ({ text, count }) => {
   }
 
   return (
-    <div>
-      <span>
-        {text} {count}
-        {percentage}
-      </span>
-    </div>
+    <tr>
+      <td>{text}</td>
+      <td>
+        {count} {percentage}
+      </td>
+    </tr>
   )
 }
 
@@ -40,18 +40,22 @@ const App = () => {
         <Button text="neutral" clickHandler={() => setToNeutral(neutral + 1)} />
         <Button text="bad" clickHandler={() => setToBad(bad + 1)} />
         <h2>statistics</h2>
-        <Statistics text="good" count={good} />
-        <Statistics text="neutral" count={neutral} />
-        <Statistics text="bad" count={bad} />
-        <Statistics text="all" count={good + neutral + bad} />
-        <Statistics
-          text="average"
-          count={(good - bad) / (good + neutral + bad)}
-        />
-        <Statistics
-          text="positive"
-          count={(good / (good + neutral + bad)) * 100}
-        />
+        <table>
+          <tbody>
+            <Statistics text="good" count={good} />
+            <Statistics text="neutral" count={neutral} />
+            <Statistics text="bad" count={bad} />
+            <Statistics text="all" count={good + neutral + bad} />
+            <Statistics
+              text="average"
+              count={((good - bad) / (good + neutral + bad)).toFixed(1)}
+            />
+            <Statistics
+              text="positive"
+              count={((good / (good + neutral + bad)) * 100).toFixed(1)}
+            />
+          </tbody>
+        </table>
       </div>
     )
   }
