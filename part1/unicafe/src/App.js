@@ -4,7 +4,7 @@ const Button = (props) => {
   return <button onClick={props.clickHandler}>{props.text}</button>
 }
 
-const Result = ({ text, count }) => {
+const Statistics = ({ text, count }) => {
   let percentage
 
   if (text === 'positive') {
@@ -39,12 +39,18 @@ const App = () => {
       <Button text="neutral" clickHandler={() => setToNeutral(neutral + 1)} />
       <Button text="bad" clickHandler={() => setToBad(bad + 1)} />
       <h2>statistics</h2>
-      <Result text="good" count={good} />
-      <Result text="neutral" count={neutral} />
-      <Result text="bad" count={bad} />
-      <Result text="all" count={good + neutral + bad} />
-      <Result text="average" count={(good - bad) / (good + neutral + bad)} />
-      <Result text="positive" count={(good / (good + neutral + bad)) * 100} />
+      <Statistics text="good" count={good} />
+      <Statistics text="neutral" count={neutral} />
+      <Statistics text="bad" count={bad} />
+      <Statistics text="all" count={good + neutral + bad} />
+      <Statistics
+        text="average"
+        count={(good - bad) / (good + neutral + bad)}
+      />
+      <Statistics
+        text="positive"
+        count={(good / (good + neutral + bad)) * 100}
+      />
     </div>
   )
 }
