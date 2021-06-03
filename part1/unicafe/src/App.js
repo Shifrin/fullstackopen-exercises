@@ -5,10 +5,18 @@ const Button = (props) => {
 }
 
 const Result = ({ text, count }) => {
+  let percentage
+
+  if (text === 'positive') {
+    count = count > 0 ? count : 0
+    percentage = ' %'
+  }
+
   return (
     <div>
       <span>
         {text} {count}
+        {percentage}
       </span>
     </div>
   )
@@ -34,6 +42,9 @@ const App = () => {
       <Result text="good" count={good} />
       <Result text="neutral" count={neutral} />
       <Result text="bad" count={bad} />
+      <Result text="all" count={good + neutral + bad} />
+      <Result text="average" count={(good - bad) / (good + neutral + bad)} />
+      <Result text="positive" count={(good / (good + neutral + bad)) * 100} />
     </div>
   )
 }
